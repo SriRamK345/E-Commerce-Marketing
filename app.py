@@ -3,23 +3,14 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 from sklearn.linear_model import LinearRegression
-import joblib  # If you saved your model using joblib
+import joblib 
 
-
-
-# Load your trained models (replace with your actual model loading)
-# Assuming you saved using pickle:
-
+# Loading trained models
 lr_model_c = joblib.load("E-Comm sales/lr_model_camera.pkl")
 
 lr_model_a = joblib.load("E-Comm sales/lr_model_audio.pkl")
 
 lr_model_g = joblib.load("E-Comm sales/lr_model_gaming.pkl")
-
-# Load the pre-fitted scaler
-# scaler = joblib.load("E-Comm sales/scaler.pkl")  # Adjust the path as necessary
-
-# Define the expected feature names based on training
 
 # Function for preprocessing input data
 def preprocess_data(input_data, sub_category):
@@ -41,8 +32,6 @@ def preprocess_data(input_data, sub_category):
          input_data = pd.get_dummies(input_data, 
                                       columns=["product_analytic_sub_category_GamingAccessory"], 
                                       drop_first=True)
-    
-
 
     # sqrt
     input_data["total_units_sqrt"] = np.sqrt(input_data["total_units_sqrt"])
@@ -54,13 +43,13 @@ def preprocess_data(input_data, sub_category):
     
     return input_data
 
-# Streamlit app structure
+# Streamlit app
 st.title("E-Commerce Sales Prediction")
 
 # Product Sub-category Selection
 sub_category = st.selectbox("Select Product Sub-category", ["CameraAccessory", "HomeAudio", "GamingAccessory"])
 
-# Input fields for features (customize based on your features)
+# Input fields for features
 units = st.number_input("Enter Total Units", value=0.0)
 sla = st.number_input("Enter SLA", value=0.0)
 avg_temperature = st.number_input("Enter Average Temperature", value=0.0)
@@ -97,6 +86,6 @@ if st.button("Predict"):
 
     try:
         prediction = model.predict(input_data_processed)
-        st.write("Predicted GMV:", prediction[0]**2)  # Check if squaring is necessary
+        st.write("Predicted GMV:", prediction[0]**2)
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
