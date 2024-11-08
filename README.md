@@ -1,4 +1,4 @@
-# AWS-Hosted Machine Learning Model for Predicting Used Car Prices
+# E-Commerce Sales Forecasting and Marketing Budget Optimization System
 
 Optimize the marketing budget to enhance revenue response by analyzing the sales trends across different product sub-categories.
 
