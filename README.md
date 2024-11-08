@@ -1,4 +1,4 @@
-# E-Commerce Marketing
+# AWS-Hosted Machine Learning Model for Predicting Used Car Prices
 
 Optimize the marketing budget to enhance revenue response by analyzing the sales trends across different product sub-categories.
 
